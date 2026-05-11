@@ -1,1 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>NCT Studio • Independent CGI & Animation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      background-color: #0A0A0A;
+      color: #E5E5E5;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+
+    h2 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+    }
+
+    .section-tag {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #A78BFA;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: #A0A0B0;
+      font-size: 16px;
+      max-width: 640px;
+    }
+
+    a {
+      color: #A78BFA;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #C4B5FD;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: #FFFFFF;
+      color: #0A0A0A;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: background 0.25s ease, transform 0.15s ease;
+      letter-spacing: 0.02em;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #E0E0E0;
+      transform: scale(1.02);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 13px 32px;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0.05em;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: #B0B0C0;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #FFFFFF;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px;
+      z-index: 101;
+    }
+
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #FFFFFF;
+      transition: all 0.3s ease;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      padding: 180px 0 80px;
+      background: radial-gradient(circle at 30% 40%, #1E1B2E 0%, #0A0A0A 70%);
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin-bottom: 28px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      color: #C0C0D0;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 24px;
+      padding: 32px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .platform-label {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #A78BFA;
+      margin-bottom: 16px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .metric-desc {
+      font-size: 14px;
+      color: #9090A0;
+      text-align: right;
+      max-width: 200px;
+    }
+
+    .advertise-note {
+      margin-bottom: 32px;
+      font-size: 17px;
+      color: #C0C0D0;
+      line-height: 1.6;
+    }
+    .advertise-note a {
+      font-weight: 600;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 48px;
+      align-items: stretch;
+    }
+
+    .work-card {
+      background: #14141A;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.25s ease, border-color 0.2s, box-shadow 0.25s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px -20px rgba(167, 139, 250, 0.15);
+    }
+
+    .work-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #1E1E2A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #505060;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .work-info {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .work-info h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #FFFFFF;
+    }
+
+    .work-info p {
+      font-size: 14px;
+      color: #9090A0;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      max-width: 900px;
+      width: 100%;
+      background: #14141A;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+    }
+
+    .modal-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #1E1E2A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #505060;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    .modal-info {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      font-size: 32px;
+      cursor: pointer;
+      z-index: 201;
+      line-height: 1;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 40px;
+    }
+
+    .resource-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 40px;
+      color: #D0D0E0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.2s;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .resource-link:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    .resource-icon {
+      font-size: 18px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .contact-card {
+      background: #14141A;
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .contact-card h3 {
+      margin-bottom: 12px;
+    }
+
+    .contact-card p {
+      margin-bottom: 20px;
+    }
+
+    .email-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 32px 0;
+      margin-top: 80px;
+      text-align: center;
+      color: #707080;
+      font-size: 14px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #0A0A0A;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        font-size: 24px;
+        z-index: 100;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .burger {
+        display: flex;
+        position: relative;
+        z-index: 101;
+      }
+
+      .about-grid,
+      .contact-grid,
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header container">
+    <a href="#" class="logo">NCT STUDIO</a>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="nav-menu">
+      <a href="#work">Our Work</a>
+      <a href="#commercial">Commercial</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Independent CGI &amp; Animation Studio</h1>
+      <p>We create stylized 3D animated series, cinematic worlds and high-end CGI content — from original YouTube series to custom client projects.</p>
+      <div class="hero-buttons">
+        <a href="https://www.youtube.com/@SerialsNever" target="_blank" class="btn">▶ Watch on YouTube</a>
+        <a href="#contact" class="btn btn-outline">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container fade-in">
+      <div class="section-tag">Audience & Reach</div>
+      <h2>Our platforms performance</h2>
+      <p class="advertise-note">
+        We are open for advertising and sponsorships. Reach our engaged audience on 
+        <a href="https://www.youtube.com/@SerialsNever" target="_blank">YouTube</a> and 
+        <a href="https://t.me/Nevertut" target="_blank">Telegram</a>.
+      </p>
+      <div class="metrics-grid">
+        <div>
+          <div class="platform-label">YouTube</div>
+          <div class="metric-row"><span class="metric-value">355K</span><span class="metric-desc">Subscribers</span></div>
+          <div class="metric-row"><span class="metric-value">428.5K</span><span class="metric-desc">Views (latest episode)</span></div>
+          <div class="metric-row"><span class="metric-value">38.3K</span><span class="metric-desc">Likes (latest episode)</span></div>
+          <div class="metric-row"><span class="metric-value">10.8%</span><span class="metric-desc">Like Rate</span></div>
+          <div class="metric-row"><span class="metric-value">120.7%</span><span class="metric-desc">View Rate</span></div>
+        </div>
+        <div>
+          <div class="platform-label">Telegram</div>
+          <div class="metric-row"><span class="metric-value">36,579</span><span class="metric-desc">Subscribers (+1,319/month)</span></div>
+          <div class="metric-row"><span class="metric-value">99.1%</span><span class="metric-desc">ERR</span></div>
+          <div class="metric-row"><span class="metric-value">36.1%</span><span class="metric-desc">ERR24</span></div>
+          <div class="metric-row"><span class="metric-value">36,265</span><span class="metric-desc">Avg post reach</span></div>
+          <div class="metric-row"><span class="metric-value">13,200</span><span class="metric-desc">Avg ad reach (24h)</span></div>
+          <div class="metric-row"><span class="metric-value">21.6%</span><span class="metric-desc">ER (3.6K reactions, 247 forwards, 419 comments)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="container fade-in">
+      <div class="section-tag">Our Work</div>
+      <h2>Original series & cinematic shots</h2>
+      <div class="work-grid">
+        <div class="work-card" data-title="Cinematic Environments" data-desc="Atmospheric interiors and dramatic lighting">
+          <div class="work-img" style="background-image: url('1.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="work-info">
+            <h4>Cinematic Environments</h4>
+            <p>Atmospheric interiors and dramatic lighting</p>
+          </div>
+        </div>
+        <div class="work-card" data-title="Natural Worlds" data-desc="Beautiful, vibrant worlds crafted with meticulous attention to every detail">
+          <div class="work-img" style="background-image: url('5.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="work-info">
+            <h4>Natural Worlds</h4>
+            <p>Beautiful, vibrant worlds crafted with meticulous attention to every detail</p>
+          </div>
+        </div>
+        <div class="work-card" data-title="Action Sequence" data-desc="Dynamic combat and atmospheric tension">
+          <div class="work-img" style="background-image: url('4.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="work-info">
+            <h4>Action Sequence</h4>
+            <p>Dynamic combat and atmospheric tension</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="commercial">
+    <div class="container fade-in">
+      <div class="section-tag">Commercial Portfolio</div>
+      <h2>Professional 3D modeling and creature design for client projects</h2>
+      <div class="work-grid">
+        <div class="work-card" data-title="Creature Design" data-desc="High-detail boss character modeling">
+          <div class="work-img" style="background-image: url('10.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="work-info">
+            <h4>Creature Design</h4>
+            <p>High-detail boss character modeling</p>
+          </div>
+        </div>
+        <div class="work-card" data-title="T-Rex Model" data-desc="Realistic dinosaur 3D rendering">
+          <div class="work-img" style="background-image: url('7.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="work-info">
+            <h4>T-Rex Model</h4>
+            <p>Realistic dinosaur 3D rendering</p>
+          </div>
+        </div>
+        <div class="work-card" data-title="Monster Animation" data-desc="Dynamic creature animation and rigging">
+          <div class="work-img" style="background-image: url('8.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="work-info">
+            <h4>Monster Animation</h4>
+            <p>Dynamic creature animation and rigging</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container fade-in">
+      <div class="about-grid">
+        <div>
+          <div class="section-tag">About NCT Studio</div>
+          <h2>Independent CGI &amp; animation team</h2>
+          <p style="margin-top:20px;">NCT Studio is an independent CGI and animation team producing original stylized 3D series for YouTube audiences worldwide. The studio focuses on cinematic storytelling, creature animation, worldbuilding and high-quality visual production.</p>
+          <p style="margin-top:16px;">In addition to our original series, we provide custom client work including 3D modeling, animation, texturing, and full-cycle development of bosses and mobs from concept to completion.</p>
+        </div>
+        <div>
+          <div class="section-tag">Future Vision</div>
+          <h2>Pipeline &amp; growth</h2>
+          <ul style="list-style:none;margin-top:24px;">
+            <li style="padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#D0D0E0;display:flex;align-items:center;gap:12px;"><span style="color:#A78BFA;">→</span> Faster production workflows</li>
+            <li style="padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#D0D0E0;display:flex;align-items:center;gap:12px;"><span style="color:#A78BFA;">→</span> Localization</li>
+            <li style="padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:#D0D0E0;display:flex;align-items:center;gap:12px;"><span style="color:#A78BFA;">→</span> International audience reach</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources">
+    <div class="container fade-in">
+      <div class="section-tag">Stay Connected</div>
+      <h2>Our resources</h2>
+      <div class="resource-links">
+        <a href="https://www.youtube.com/@SerialsNever" target="_blank" class="resource-link"><span class="resource-icon">▶</span> YouTube</a>
+        <a href="https://t.me/Nevertut" target="_blank" class="resource-link"><span class="resource-icon">✈️</span> Telegram</a>
+        <a href="https://www.artstation.com/nctstudio" target="_blank" class="resource-link"><span class="resource-icon">🎨</span> ArtStation</a>
+        <a href="https://sketchfab.com/NCT-Studio" target="_blank" class="resource-link"><span class="resource-icon">🧩</span> Sketchfab</a>
+        <a href="https://x.com/nctstudiox" target="_blank" class="resource-link"><span class="resource-icon">🐦</span> X / Twitter</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container fade-in">
+      <div class="section-tag">Get In Touch</div>
+      <h2>Let's create something extraordinary together</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Work with us</h3>
+          <p>Direct line for custom production, assets, and project estimates.</p>
+          <div class="email-stack">
+            <a href="mailto:vlad@nctstudio.com" class="btn btn-outline">vlad@nctstudio.com</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <h3>Advertising & Sponsorships</h3>
+          <p>Reach our engaged audience of 355K+ YouTube subscribers and 36.5K+ Telegram community.</p>
+          <div class="email-stack">
+            <a href="mailto:ilia@nctstudio.com" class="btn btn-outline">ilia@nctstudio.com</a>
+            <a href="mailto:nevercommercialilya@gmail.com" class="btn btn-outline">nevercommercialilya@gmail.com</a>
+          </div>
+          <p style="font-size:14px; margin-top:12px; color:#9090A0;">(Both emails are active for advertising inquiries)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 NCT Studio. Independent CGI & Animation.</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <div class="modal-content">
+      <div class="modal-img" id="modal-img">Image</div>
+      <div class="modal-info">
+        <h3 id="modal-title"></h3>
+        <p id="modal-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('nav-menu');
+    burger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      burger.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        burger.classList.remove('active');
+      });
+    });
+
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalClose = document.getElementById('modal-close');
+
+    document.querySelectorAll('.work-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.dataset.title;
+        const desc = card.dataset.desc;
+        const imgContent = card.querySelector('.work-img').innerHTML;
+        modalImg.innerHTML = imgContent;
+        modalTitle.textContent = title;
+        modalDesc.textContent = desc;
+        modal.classList.add('active');
+      });
+    });
+
+    modalClose.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
