@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCT STUDIO | CGI & Animation</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000;
+            --card-bg: #111;
+            --accent-blue: #0088ff;
+            --text-main: #fff;
+            --text-dim: #888;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 80px 0; text-align: center; }
+
+        /* HERO SECTION */
+        .hero h1 { font-size: 64px; letter-spacing: 5px; font-weight: 300; margin-bottom: 10px; }
+        .hero .subtitle { color: #00d4ff; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; }
+        .hero .desc { max-width: 600px; margin: 0 auto 40px; color: var(--text-dim); }
+
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn { padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .btn-blue { background: linear-gradient(90deg, #0088ff, #00d4ff); color: white; border: none; }
+        .btn-dark { background: #111; color: white; border: 1px solid #333; }
+        .btn:hover { transform: translateY(-3px); opacity: 0.9; }
+
+        /* CARDS & STATS */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .stat-card { background: #0a0a0a; border: 1px solid #222; border-radius: 15px; padding: 30px; text-align: left; }
+        .stat-card h2 { margin: 0; font-size: 32px; }
+        .platform { color: var(--text-dim); text-transform: uppercase; font-size: 12px; }
+
+        /* PORTFOLIO */
+        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .work-item { position: relative; border-radius: 12px; overflow: hidden; background: #222; height: 250px; }
+        .work-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .work-label { position: absolute; bottom: 20px; left: 20px; font-weight: bold; }
+
+        /* ABOUT BOX */
+        .about-box { background: #0a0a0a; border: 1px solid #1a1a1a; padding: 40px; border-radius: 20px; text-align: left; }
+        .vision-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 30px; border-top: 1px solid #222; padding-top: 20px; }
+        .vision-tag { color: #00d4ff; font-size: 10px; text-transform: uppercase; font-weight: bold; }
+
+        /* SOCIAL ICONS */
+        .social-row { display: flex; justify-content: center; gap: 20px; margin-top: 40px; }
+        .social-btn { width: 100px; height: 100px; background: #0a0a0a; border: 1px solid #222; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-direction: column; font-size: 10px; color: var(--text-dim); }
+
+        /* CONTACTS */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .contact-card { background: #070707; border: 1px solid #111; padding: 30px; border-radius: 15px; text-align: left; }
+        .mail-link { color: #00d4ff; text-decoration: none; display: block; margin-top: 10px; }
+
+        footer { padding: 50px 0; color: var(--text-dim); font-size: 12px; }
+        
+        @media (max-width: 768px) {
+            .grid-2, .portfolio-grid, .contact-grid, .vision-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Section 1: Hero -->
+    <section class="hero">
+        <h1>NCT STUDIO</h1>
+        <div class="subtitle">INDEPENDENT CGI & ANIMATION STUDIO</div>
+        <p class="desc">We create stylized 3D animated series, cinematic worlds and high-end CGI content.</p>
+        <div class="btn-group">
+            <a href="#" class="btn btn-blue">Watch Our Content on YouTube</a>
+            <a href="#" class="btn btn-dark">Place an Order / Inquiries</a>
+            <a href="#" class="btn btn-dark">Advertising & Partnership</a>
+        </div>
+    </section>
+
+    <!-- Section 2: Stats -->
+    <section>
+        <h2>Cubic Excellence</h2>
+        <p style="color: #888;">Full-cycle production: from custom in-game assets to original CGI series.</p>
+        <div class="grid-2">
+            <div class="stat-card">
+                <div class="platform">YouTube Platform</div>
+                <h2>355,000</h2>
+                <div class="platform">Subscribers</div>
+            </div>
+            <div class="stat-card">
+                <div class="platform">Telegram Platform</div>
+                <h2>36,534</h2>
+                <div class="platform">Subscribers</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Our Work -->
+    <section>
+        <h2>Our Work</h2>
+        <div class="portfolio-grid">
+            <div class="work-item"><div class="work-label">Creature Animation</div></div>
+            <div class="work-item"><div class="work-label">Cinematic Environments</div></div>
+            <div class="work-item"><div class="work-label">Natural Worlds</div></div>
+            <div class="work-item"><div class="work-label">Action Sequences</div></div>
+        </div>
+    </section>
+
+    <!-- Section 5: About -->
+    <section>
+        <div class="about-box">
+            <h2>About NCT Studio</h2>
+            <p>NCT Studio is an independent CGI and animation team producing original stylized 3D series for YouTube audiences worldwide.</p>
+            <div class="vision-grid">
+                <div><div class="vision-tag">Pipeline</div>Faster production</div>
+                <div><div class="vision-tag">Localization</div>English dubbing</div>
+                <div><div class="vision-tag">Growth</div>International reach</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Contacts -->
+    <section>
+        <h2>Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Advertising</h3>
+                <a href="mailto:ilia@nctstudio.com" class="mail-link">ilia@nctstudio.com</a>
+            </div>
+            <div class="contact-card">
+                <h3>Production</h3>
+                <a href="mailto:vlad@nctstudio.com" class="mail-link">vlad@nctstudio.com</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>NCT STUDIO</p>
+        <p>© 2024 NCT Studio. Independent CGI & Animation.</p>
+    </footer>
+</div>
+
+</body>
+</html>
