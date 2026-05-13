@@ -12,7 +12,8 @@
     }
 
     body {
-      background-color: #0A0A0A;
+      /* Новый градиентный фон на весь сайт */
+      background: linear-gradient(to bottom, #1E1B2E 0%, #0A0A0A 70%) fixed;
       color: #E5E5E5;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       line-height: 1.5;
@@ -172,7 +173,8 @@
       justify-content: center;
       position: relative;
       padding: 180px 0 80px;
-      background: radial-gradient(circle at 30% 40%, #1E1B2E 0%, #0A0A0A 70%);
+      /* hero сохраняет свой радиальный градиент, который накладывается поверх body */
+      background: radial-gradient(circle at 30% 40%, #1E1B2E 0%, rgba(10,10,10,0.4) 70%);
     }
 
     .hero h1 {
@@ -222,7 +224,6 @@
       margin-bottom: 20px;
     }
 
-    /* Компактная строка метрики */
     .metric-row {
       display: flex;
       align-items: baseline;
@@ -459,16 +460,25 @@
       font-size: 14px;
     }
 
-    .fade-in {
+    /* АНИМАЦИИ ПРИ СКРОЛЛЕ */
+    .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(40px) scale(0.95);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .fade-in.visible {
+    .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
+
+    /* Задержки для каскадного появления */
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
 
     @media (max-width: 768px) {
       .container {
@@ -541,17 +551,17 @@
   </section>
 
   <section>
-    <div class="container fade-in">
-      <div class="section-tag">Audience & Reach</div>
-      <h2>Our platforms performance</h2>
-      <p class="advertise-note">
+    <div class="container">
+      <div class="section-tag reveal">Audience & Reach</div>
+      <h2 class="reveal">Our platforms performance</h2>
+      <p class="advertise-note reveal">
         We are open for advertising and sponsorships. Reach our engaged audience on 
         <a href="https://www.youtube.com/@SerialsNever" target="_blank">YouTube</a> and 
         <a href="https://t.me/Nevertut" target="_blank">Telegram</a>.
       </p>
       <div class="metrics-wrapper">
         <!-- YouTube -->
-        <div class="metric-card">
+        <div class="metric-card reveal reveal-delay-1">
           <div class="platform-label">▶ YouTube</div>
           <div class="metric-row"><span class="metric-value">355K</span><span class="metric-desc">Subscribers</span></div>
           <div class="metric-row"><span class="metric-value">428.5K</span><span class="metric-desc">Views (latest episode)</span></div>
@@ -560,7 +570,7 @@
           <div class="metric-row"><span class="metric-value">120.7%</span><span class="metric-desc">View Rate</span></div>
         </div>
         <!-- Telegram -->
-        <div class="metric-card">
+        <div class="metric-card reveal reveal-delay-2">
           <div class="platform-label">✈️ Telegram</div>
           <div class="metric-row"><span class="metric-value">36,579</span><span class="metric-desc">Subscribers (+1,319/month)</span></div>
           <div class="metric-row"><span class="metric-value">99.1%</span><span class="metric-desc">ERR</span></div>
@@ -574,25 +584,25 @@
   </section>
 
   <section id="work">
-    <div class="container fade-in">
-      <div class="section-tag">Our Work</div>
-      <h2>Original series & cinematic shots</h2>
+    <div class="container">
+      <div class="section-tag reveal">Our Work</div>
+      <h2 class="reveal">Original series & cinematic shots</h2>
       <div class="work-grid">
-        <div class="work-card" data-title="Cinematic Environments" data-desc="Atmospheric interiors and dramatic lighting">
+        <div class="work-card reveal reveal-delay-1" data-title="Cinematic Environments" data-desc="Atmospheric interiors and dramatic lighting">
           <div class="work-img" style="background-image: url('1.jpg'); background-size: cover; background-position: center;"></div>
           <div class="work-info">
             <h4>Cinematic Environments</h4>
             <p>Atmospheric interiors and dramatic lighting</p>
           </div>
         </div>
-        <div class="work-card" data-title="Natural Worlds" data-desc="Beautiful, vibrant worlds crafted with meticulous attention to every detail">
+        <div class="work-card reveal reveal-delay-2" data-title="Natural Worlds" data-desc="Beautiful, vibrant worlds crafted with meticulous attention to every detail">
           <div class="work-img" style="background-image: url('5.jpg'); background-size: cover; background-position: center;"></div>
           <div class="work-info">
             <h4>Natural Worlds</h4>
             <p>Beautiful, vibrant worlds crafted with meticulous attention to every detail</p>
           </div>
         </div>
-        <div class="work-card" data-title="Action Sequence" data-desc="Dynamic combat and atmospheric tension">
+        <div class="work-card reveal reveal-delay-3" data-title="Action Sequence" data-desc="Dynamic combat and atmospheric tension">
           <div class="work-img" style="background-image: url('4.jpg'); background-size: cover; background-position: center;"></div>
           <div class="work-info">
             <h4>Action Sequence</h4>
@@ -604,25 +614,25 @@
   </section>
 
   <section id="commercial">
-    <div class="container fade-in">
-      <div class="section-tag">Commercial Portfolio</div>
-      <h2>Professional 3D modeling and creature design for client projects</h2>
+    <div class="container">
+      <div class="section-tag reveal">Commercial Portfolio</div>
+      <h2 class="reveal">Professional 3D modeling and creature design for client projects</h2>
       <div class="work-grid">
-        <div class="work-card" data-title="Creature Design" data-desc="High-detail boss character modeling">
+        <div class="work-card reveal reveal-delay-1" data-title="Creature Design" data-desc="High-detail boss character modeling">
           <div class="work-img" style="background-image: url('10.jpg'); background-size: cover; background-position: center;"></div>
           <div class="work-info">
             <h4>Creature Design</h4>
             <p>High-detail boss character modeling</p>
           </div>
         </div>
-        <div class="work-card" data-title="T-Rex Model" data-desc="Realistic dinosaur 3D rendering">
+        <div class="work-card reveal reveal-delay-2" data-title="T-Rex Model" data-desc="Realistic dinosaur 3D rendering">
           <div class="work-img" style="background-image: url('7.jpg'); background-size: cover; background-position: center;"></div>
           <div class="work-info">
             <h4>T-Rex Model</h4>
             <p>Realistic dinosaur 3D rendering</p>
           </div>
         </div>
-        <div class="work-card" data-title="Monster Animation" data-desc="Dynamic creature animation and rigging">
+        <div class="work-card reveal reveal-delay-3" data-title="Monster Animation" data-desc="Dynamic creature animation and rigging">
           <div class="work-img" style="background-image: url('8.jpg'); background-size: cover; background-position: center;"></div>
           <div class="work-info">
             <h4>Monster Animation</h4>
@@ -634,15 +644,15 @@
   </section>
 
   <section id="about">
-    <div class="container fade-in">
+    <div class="container">
       <div class="about-grid">
-        <div>
+        <div class="reveal reveal-delay-1">
           <div class="section-tag">About NCT Studio</div>
           <h2>Independent CGI &amp; animation team</h2>
           <p style="margin-top:20px;">NCT Studio is an independent CGI and animation team producing original stylized 3D series for YouTube audiences worldwide. The studio focuses on cinematic storytelling, creature animation, worldbuilding and high-quality visual production.</p>
           <p style="margin-top:16px;">In addition to our original series, we provide custom client work including 3D modeling, animation, texturing, and full-cycle development of bosses and mobs from concept to completion.</p>
         </div>
-        <div>
+        <div class="reveal reveal-delay-2">
           <div class="section-tag">Future Vision</div>
           <h2>Pipeline &amp; growth</h2>
           <ul style="list-style:none;margin-top:24px;">
@@ -657,32 +667,32 @@
   </section>
 
   <section id="resources">
-    <div class="container fade-in">
-      <div class="section-tag">Stay Connected</div>
-      <h2>Our resources</h2>
+    <div class="container">
+      <div class="section-tag reveal">Stay Connected</div>
+      <h2 class="reveal">Our resources</h2>
       <div class="resource-links">
-        <a href="https://www.youtube.com/@SerialsNever" target="_blank" class="resource-link"><span class="resource-icon">▶</span> YouTube</a>
-        <a href="https://t.me/Nevertut" target="_blank" class="resource-link"><span class="resource-icon">✈️</span> Telegram</a>
-        <a href="https://www.artstation.com/nctstudio" target="_blank" class="resource-link"><span class="resource-icon">🎨</span> ArtStation</a>
-        <a href="https://sketchfab.com/NCT-Studio" target="_blank" class="resource-link"><span class="resource-icon">🧩</span> Sketchfab</a>
-        <a href="https://x.com/nctstudiox" target="_blank" class="resource-link"><span class="resource-icon">🐦</span> X / Twitter</a>
+        <a href="https://www.youtube.com/@SerialsNever" target="_blank" class="resource-link reveal reveal-delay-1"><span class="resource-icon">▶</span> YouTube</a>
+        <a href="https://t.me/Nevertut" target="_blank" class="resource-link reveal reveal-delay-2"><span class="resource-icon">✈️</span> Telegram</a>
+        <a href="https://www.artstation.com/nctstudio" target="_blank" class="resource-link reveal reveal-delay-3"><span class="resource-icon">🎨</span> ArtStation</a>
+        <a href="https://sketchfab.com/NCT-Studio" target="_blank" class="resource-link reveal reveal-delay-4"><span class="resource-icon">🧩</span> Sketchfab</a>
+        <a href="https://x.com/nctstudiox" target="_blank" class="resource-link reveal reveal-delay-5"><span class="resource-icon">🐦</span> X / Twitter</a>
       </div>
     </div>
   </section>
 
   <section id="contact">
-    <div class="container fade-in">
-      <div class="section-tag">Get In Touch</div>
-      <h2>Let's create something extraordinary together</h2>
+    <div class="container">
+      <div class="section-tag reveal">Get In Touch</div>
+      <h2 class="reveal">Let's create something extraordinary together</h2>
       <div class="contact-grid">
-        <div class="contact-card">
+        <div class="contact-card reveal reveal-delay-1">
           <h3>Work with us</h3>
           <p>Direct line for custom production, assets, and project estimates.</p>
           <div class="email-stack">
             <a href="mailto:vlad@nctstudio.com" class="btn btn-outline">vlad@nctstudio.com</a>
           </div>
         </div>
-        <div class="contact-card">
+        <div class="contact-card reveal reveal-delay-2">
           <h3>Advertising & Sponsorships</h3>
           <p>Reach our engaged audience of 355K+ YouTube subscribers and 36.5K+ Telegram community.</p>
           <div class="email-stack">
@@ -753,15 +763,17 @@
       if (e.target === modal) modal.classList.remove('active');
     });
 
+    // Наблюдатель за появлением элементов
+    const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.2, rootMargin: "0px 0px -50px 0px" });
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    revealElements.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
