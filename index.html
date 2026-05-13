@@ -200,29 +200,27 @@
       border-color: rgba(255, 255, 255, 0.5);
     }
 
+    /* Шапка – закреплена сверху */
     .header {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
-      padding: 28px 0;
-      position: absolute;
+      padding: 16px 0;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 100;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 22px;
-      letter-spacing: 0.05em;
-      color: #FFFFFF;
-      text-decoration: none;
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .nav-links {
       display: flex;
       gap: 32px;
+      margin-right: 40px;
     }
 
     .nav-links a {
@@ -246,6 +244,7 @@
       border: none;
       padding: 8px;
       z-index: 101;
+      margin-right: 40px;
     }
 
     .burger span {
@@ -261,15 +260,30 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
+      text-align: center;
       position: relative;
-      padding: 180px 0 80px;
+      padding: 160px 0 80px; /* добавили отступ сверху под фиксированную шапку */
     }
 
-    .hero h1 {
-      max-width: 900px;
-      margin-bottom: 28px;
-      position: relative;
-      z-index: 1;
+    .hero-title {
+      font-size: clamp(56px, 10vw, 112px);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #C4B5FD 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 500;
+      color: #B0A0D0;
+      margin-bottom: 40px;
+      letter-spacing: 0.05em;
     }
 
     .hero p {
@@ -277,16 +291,13 @@
       line-height: 1.6;
       margin-bottom: 40px;
       color: #C0C0D0;
-      position: relative;
-      z-index: 1;
     }
 
     .hero-buttons {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
+      justify-content: center;
     }
 
     section {
@@ -609,14 +620,13 @@
 
       .hero-buttons {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
-  <header class="header container">
-    <a href="#" class="logo">NCT STUDIO</a>
+  <header class="header">
     <button class="burger" id="burger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -631,7 +641,8 @@
 
   <section class="hero">
     <div class="container">
-      <h1>Independent CGI &amp; Animation Studio</h1>
+      <h1 class="hero-title">NCT STUDIO</h1>
+      <p class="hero-subtitle">Independent CGI &amp; Animation Studio</p>
       <p>We create stylized 3D animated series, cinematic worlds and high-end CGI content — from original YouTube series to custom client projects.</p>
       <div class="hero-buttons">
         <a href="https://www.youtube.com/@SerialsNever" target="_blank" class="btn">▶ Watch on YouTube</a>
